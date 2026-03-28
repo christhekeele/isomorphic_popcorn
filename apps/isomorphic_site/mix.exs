@@ -45,6 +45,7 @@ defmodule IsomorphicSite.MixProject do
   defp deps do
     [
       {:isomorphic_sim, in_umbrella: true},
+      {:phoenix_copy, "~> 0.1.4"},
       {:phoenix, "~> 1.8.1"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.13"},
@@ -87,7 +88,7 @@ defmodule IsomorphicSite.MixProject do
       "ecto.reset": ["ecto.drop", "ecto.setup"],
       test: ["ecto.create --quiet", "ecto.migrate --quiet", "test"],
       "assets.setup": ["tailwind.install --if-missing", "esbuild.install --if-missing"],
-      "assets.build": ["compile", "tailwind isomorphic_site", "esbuild isomorphic_site"],
+      "assets.build": ["compile", "tailwind isomorphic_site", "esbuild isomorphic_site", "esbuild isomorphic_sim"],
       "assets.deploy": [
         "tailwind isomorphic_site --minify",
         "esbuild isomorphic_site --minify",

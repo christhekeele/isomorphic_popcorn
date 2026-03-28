@@ -57,7 +57,7 @@ config :isomorphic_site, IsomorphicSiteWeb.Endpoint,
   live_reload: [
     web_console_logger: true,
     patterns: [
-      ~r"priv/static/(?!uploads/).*(js|css|png|jpeg|jpg|gif|svg)$",
+      ~r"priv/static/(?!uploads/).*(js|mjs|wasm|avm|css|png|jpeg|jpg|gif|svg)$",
       ~r"priv/gettext/.*(po)$",
       ~r"lib/isomorphic_site_web/(?:controllers|live|components|router)/?.*\.(ex|heex)$"
     ]
