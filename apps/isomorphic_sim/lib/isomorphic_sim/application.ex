@@ -5,6 +5,15 @@ defmodule IsomorphicSim.Application do
 
   use Application
 
+  @otp_app :isomorphic_sim
+  def name, do: @otp_app
+
+  @env Application.compile_env!(@otp_app, :env)
+  def env, do: @env
+
+  @target Application.compile_env!(@otp_app, :target)
+  def target, do: @target
+
   @impl true
   def start(_type, _args) do
     children = [

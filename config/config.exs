@@ -16,6 +16,24 @@
 # General application configuration
 import Config
 
+env = config_env()
+target = config_target()
+
+project_root = Path.expand("..", __DIR__)
+apps_path = "apps"
+apps_root = Path.expand(Path.join([project_root, apps_path]))
+
+apps =
+  File.ls!(apps_root)
+  |> Enum.filter(&File.dir?(Path.join([apps_root, &1])))
+  |> Enum.filter(&File.exists?(Path.join([apps_root, &1, "mix.exs"])))
+  |> Enum.map(&String.to_atom/1)
+
+for app <- apps do
+  config app, env: env
+  config app, target: target
+end
+
 config :isomorphic_site,
   ecto_repos: [IsomorphicSite.Repo],
   generators: [timestamp_type: :utc_datetime]
