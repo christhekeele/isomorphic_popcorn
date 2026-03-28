@@ -9,7 +9,7 @@ defmodule IsomorphicSite.MixProject do
       config_path: "../../config/config.exs",
       deps_path: "../../deps",
       lockfile: "../../mix.lock",
-      elixir: "~> 1.15",
+      elixir: "== 1.17.3",
       elixirc_paths: elixirc_paths(Mix.env()),
       start_permanent: Mix.env() == :prod,
       aliases: aliases(),
@@ -44,6 +44,7 @@ defmodule IsomorphicSite.MixProject do
   # Type `mix help deps` for examples and options.
   defp deps do
     [
+      {:isomorphic_sim, in_umbrella: true},
       {:phoenix, "~> 1.8.1"},
       {:phoenix_ecto, "~> 4.5"},
       {:ecto_sql, "~> 3.13"},

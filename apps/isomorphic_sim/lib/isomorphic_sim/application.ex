@@ -16,6 +16,19 @@ defmodule IsomorphicSim.Application do
 
   @impl true
   def start(_type, _args) do
+    if target() == :popcorn do
+      Popcorn.Wasm.register(__MODULE__)
+
+      Popcorn.Wasm.run_js("""
+      ({ wasm, args }) => {
+        console.log("Running simulation application in frontend...")
+        return [];
+      }
+      """)
+    else
+      IO.puts("Starting simulation application in backend...")
+    end
+
     children = [
       # Starts a worker by calling: IsomorphicSim.Worker.start_link(arg)
       # {IsomorphicSim.Worker, arg}
