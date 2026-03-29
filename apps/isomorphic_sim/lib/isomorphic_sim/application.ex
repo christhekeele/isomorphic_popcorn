@@ -21,7 +21,7 @@ defmodule IsomorphicSim.Application do
 
       Popcorn.Wasm.run_js("""
       ({ wasm, args }) => {
-        console.log("Running simulation application in frontend...")
+        console.log("Starting simulation application in frontend...")
         return [];
       }
       """)

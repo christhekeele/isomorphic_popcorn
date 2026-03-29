@@ -13,7 +13,9 @@
   - `mix phx.server`
   - See in server logs: `Starting simulation application in backend...`
 - Navigate to `https://localhost:4000`
-  - Await seeing in console logs: `"Running simulation application in frontend..."`
+  - Await seeing in console logs: 
+    - Popcorn cooked app boot log: `Starting simulation application in frontend..."`
+    - or post-popcornjs init log: `Popcorn initialization finished!`
   - Instead eventually see `Uncaught Promise timeout` coming from `sim.js`
   - So `IsomorphicSim.Application.start`'s `Popcorn.Wasm.register` must never get called
 

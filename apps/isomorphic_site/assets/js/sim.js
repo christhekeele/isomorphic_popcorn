@@ -8,3 +8,4 @@ await Popcorn.init({
   onStderr: console.error,
   debug: true,
 });
+console.log("Popcorn initialization finished!")
