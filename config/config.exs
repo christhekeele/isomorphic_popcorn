@@ -33,7 +33,9 @@ site_app_root = Path.expand(Path.join([apps_root, "isomorphic_site"]))
 
 for app <- apps do
   config app, env: env
+  config app, known_envs: [:dev, :test, :prod]
   config app, target: target
+  config app, known_targets: [:host, :wasm]
 end
 
 config :isomorphic_site,
@@ -72,7 +74,7 @@ config :popcorn,
 config :phoenix_copy,
   popcorn: [
     source: Path.join([site_app_source_assets_root, "js", "popcorn"]),
-    destination: Path.join([site_app_built_static_assets_root, "popcorn"])
+    destination: Path.join([site_app_built_static_assets_root, "js", "popcorn"])
   ]
 
 # Configure esbuild (the version is required)
@@ -81,12 +83,6 @@ config :esbuild,
   isomorphic_site: [
     args:
       ~w(js/app.js --bundle --target=es2022 --outdir=../priv/static/assets/js --external:/fonts/* --external:/images/* --alias:@=.),
-    cd: Path.expand("../apps/isomorphic_site/assets", __DIR__),
-    env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
-  ],
-  isomorphic_sim: [
-    args:
-      ~w(js/sim.js --bundle --platform=neutral --format=esm --main-fields=browser,main,module --outdir=#{site_app_built_assets_root} --external:/fonts/* --external:/images/* --alias:@=.),
     cd: Path.expand("../apps/isomorphic_site/assets", __DIR__),
     env: %{"NODE_PATH" => [Path.expand("../deps", __DIR__), Mix.Project.build_path()]}
   ]
