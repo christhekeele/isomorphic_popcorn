@@ -16,7 +16,7 @@ defmodule IsomorphicSim.Application do
 
   @impl true
   def start(_type, _args) do
-    if target() == :popcorn do
+    if target() == :wasm do
       Popcorn.Wasm.register(__MODULE__)
 
       Popcorn.Wasm.run_js("""
